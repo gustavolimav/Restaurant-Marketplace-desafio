@@ -1,7 +1,7 @@
 package com.gustavolima.marketplace.domain.category;
 
 
-import com.gustavolima.marketplace.controllers.CategoryDTO;
+import com.gustavolima.marketplace.controllers.DTOs.CategoryDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

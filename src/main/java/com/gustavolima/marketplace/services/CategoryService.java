@@ -1,16 +1,18 @@
 package com.gustavolima.marketplace.services;
 
-import com.gustavolima.marketplace.controllers.CategoryDTO;
+import com.gustavolima.marketplace.controllers.DTOs.CategoryDTO;
 import com.gustavolima.marketplace.domain.category.Category;
-import com.gustavolima.marketplace.exceptions.CategoryNotFoundException;
+import com.gustavolima.marketplace.domain.category.exceptions.CategoryNotFoundException;
 import com.gustavolima.marketplace.repositories.CategoryRepository;
+import com.gustavolima.marketplace.services.aws.AWSSNSService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
-    private CategoryRepository _categoryRepository;
+    private final CategoryRepository _categoryRepository;
 
     public CategoryService(CategoryRepository categoryRepository) {
         _categoryRepository = categoryRepository;
@@ -32,11 +34,11 @@ public class CategoryService {
         Category category = _categoryRepository.findById(categoryId)
                 .orElseThrow(CategoryNotFoundException::new);
 
-        if (!categoryDTO.title().isBlank()) {
+        if (categoryDTO.title() != null) {
             category.setTitle(categoryDTO.title());
         }
 
-        if (!categoryDTO.description().isBlank()) {
+        if (categoryDTO.description() != null) {
             category.setDescription(categoryDTO.description());
         }
 
@@ -50,6 +52,10 @@ public class CategoryService {
                 .orElseThrow(CategoryNotFoundException::new);
 
         _categoryRepository.delete(category);
+    }
+
+    public Optional<Category> getCategoryById(String categoryId) {
+        return _categoryRepository.findById(categoryId);
     }
 
 }

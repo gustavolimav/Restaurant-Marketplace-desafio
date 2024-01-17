@@ -1,5 +1,6 @@
 package com.gustavolima.marketplace.controllers;
 
+import com.gustavolima.marketplace.controllers.DTOs.CategoryDTO;
 import com.gustavolima.marketplace.domain.category.Category;
 import com.gustavolima.marketplace.services.CategoryService;
 import org.springframework.http.ResponseEntity;

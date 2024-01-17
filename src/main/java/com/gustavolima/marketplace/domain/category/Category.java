@@ -1,6 +1,7 @@
 package com.gustavolima.marketplace.domain.category;
 
 
+import com.gustavolima.marketplace.controllers.CategoryDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Category {
     @Id
     private String id;
-    private String title;
     private String description;
     private String ownerId;
+    private String title;
+
+    public Category(CategoryDTO categoryDTO) {
+        this.description = categoryDTO.description();
+        this.ownerId = categoryDTO.ownerId();
+        this.title = categoryDTO.title();
+    }
 }

@@ -1,4 +1,4 @@
-package com.gustavolima.marketplace.repository;
+package com.gustavolima.marketplace.repositories;
 
 import com.gustavolima.marketplace.domain.category.Category;
 import org.springframework.data.mongodb.repository.MongoRepository;

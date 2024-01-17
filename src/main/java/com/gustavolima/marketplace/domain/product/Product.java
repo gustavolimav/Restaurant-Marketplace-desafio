@@ -1,5 +1,6 @@
 package com.gustavolima.marketplace.domain.product;
 
+import com.gustavolima.marketplace.controllers.DTOs.ProductDTO;
 import com.gustavolima.marketplace.domain.category.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +23,11 @@ public class Product {
     private Integer price;
     private String ownerId;
     private Category category;
+
+    public Product(ProductDTO productDTO) {
+        this.description = productDTO.description();
+        this.title = productDTO.title();
+        this.price = productDTO.price();
+        this.ownerId = productDTO.ownerId();
+    }
 }

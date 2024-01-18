@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AWSSNSService {
-    private AmazonSNS _amazonSNS;
+    private final AmazonSNS _amazonSNS;
 
-    private Topic _catalogTopic;
+    private final Topic _catalogTopic;
 
     public AWSSNSService(AmazonSNS amazonSNS, @Qualifier("catalogEventsTopic") Topic topic) {
         _amazonSNS = amazonSNS;

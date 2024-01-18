@@ -4,7 +4,6 @@ import com.gustavolima.marketplace.controllers.DTOs.CategoryDTO;
 import com.gustavolima.marketplace.domain.category.Category;
 import com.gustavolima.marketplace.domain.category.exceptions.CategoryNotFoundException;
 import com.gustavolima.marketplace.repositories.CategoryRepository;
-import com.gustavolima.marketplace.services.aws.AWSSNSService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

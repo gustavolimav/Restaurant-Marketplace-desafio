@@ -1,16 +1,13 @@
 package com.gustavolima.marketplace.controllers;
 
-import com.gustavolima.marketplace.controllers.DTOs.CategoryDTO;
 import com.gustavolima.marketplace.controllers.DTOs.ProductDTO;
 import com.gustavolima.marketplace.domain.category.Category;
 import com.gustavolima.marketplace.domain.product.Product;
-import com.gustavolima.marketplace.services.CategoryService;
 import com.gustavolima.marketplace.services.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/product")

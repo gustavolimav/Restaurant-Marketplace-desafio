@@ -1,4 +1,4 @@
-package com.gustavolima.marketplace.configs.mongo.aws;
+package com.gustavolima.marketplace.configs.aws;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

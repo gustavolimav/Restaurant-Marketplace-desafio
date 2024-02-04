@@ -17,6 +17,6 @@ public class AWSSNSService {
     }
 
     public void publish(MessageDTO messageDTO) {
-        _amazonSNS.publish(_catalogTopic.getTopicArn(), messageDTO.toString());
+        _amazonSNS.publish(_catalogTopic.getTopicArn(), messageDTO.message());
     }
 }

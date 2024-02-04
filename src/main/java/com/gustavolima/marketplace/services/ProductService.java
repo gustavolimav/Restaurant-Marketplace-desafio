@@ -31,11 +31,9 @@ public class ProductService {
 
         Product product = new Product(productDTO);
 
-        product.setCategory(category);
-
         _productRepository.save(product);
 
-        _awsSNSService.publish(new MessageDTO(product.getOwnerId()));
+        _awsSNSService.publish(new MessageDTO(product.toString()));
 
         return product;
     }
@@ -46,12 +44,14 @@ public class ProductService {
 
     public Product updateProduct(String productId, ProductDTO productDTO) {
         Product product = _productRepository.findById(productId)
-                .orElseThrow(CategoryNotFoundException::new);
+                .orElseThrow(ProductNotFoundException::new);
 
         if (productDTO.categoryId() != null) {
             _categoryService
                     .getCategoryById(productDTO.categoryId())
-                    .ifPresent(product::setCategory);
+                    .orElseThrow(CategoryNotFoundException::new);
+
+            product.setCategoryId(productDTO.categoryId());
         }
 
         if (productDTO.title() != null) {
@@ -72,7 +72,7 @@ public class ProductService {
 
         _productRepository.save(product);
 
-        _awsSNSService.publish(new MessageDTO(product.getOwnerId()));
+        _awsSNSService.publish(new MessageDTO(product.toString()));
 
         return product;
     }

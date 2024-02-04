@@ -4,6 +4,8 @@ import com.gustavolima.marketplace.controllers.DTOs.CategoryDTO;
 import com.gustavolima.marketplace.domain.category.Category;
 import com.gustavolima.marketplace.domain.category.exceptions.CategoryNotFoundException;
 import com.gustavolima.marketplace.repositories.CategoryRepository;
+import com.gustavolima.marketplace.services.aws.AWSSNSService;
+import com.gustavolima.marketplace.services.aws.MessageDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,15 +14,19 @@ import java.util.Optional;
 @Service
 public class CategoryService {
     private final CategoryRepository _categoryRepository;
+    private final AWSSNSService _awsSNSService;
 
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository, AWSSNSService awssnsService) {
         _categoryRepository = categoryRepository;
+        _awsSNSService = awssnsService;
     }
 
     public Category postCategory(CategoryDTO categoryDTO) {
         Category category = new Category(categoryDTO);
 
-        this._categoryRepository.save(category);
+        _categoryRepository.save(category);
+
+        _awsSNSService.publish(new MessageDTO(category.toString()));
 
         return category;
     }
@@ -42,6 +48,8 @@ public class CategoryService {
         }
 
         _categoryRepository.save(category);
+
+        _awsSNSService.publish(new MessageDTO(category.toString()));
 
         return category;
     }
